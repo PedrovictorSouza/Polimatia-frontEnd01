@@ -12,7 +12,7 @@ import {
   SendButton
 } from "./styles/ChatBot.styles";
 
-const ChatBot: React.FC<{ onFinish: () => void }> = ({ onFinish }) => {
+const ChatBot: React.FC = () => {
   const [messages, setMessages] = useState<{ text: string; sender: "user" | "bot" }[]>([
     { text: "Olá! me chamo galileu, como posso te ajudar?", sender: "bot" } // 🔹 O mascote já começa falando
   ]);
@@ -25,15 +25,15 @@ const ChatBot: React.FC<{ onFinish: () => void }> = ({ onFinish }) => {
   const measureRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (measureRef.current) {
-      const index = messages.length - 1;
-      setMessageWidths((prev) => ({
-        ...prev,
-        [index]: measureRef.current.offsetWidth
-      }));
-    }
+    if (!measureRef.current) return; // 🔹 Sai da função se measureRef.current for null
+  
+    const index = messages.length - 1;
+    setMessageWidths((prev) => ({
+      ...prev,
+      [index]: measureRef.current!.offsetWidth, // 🔹 Use "!" para garantir que não seja null
+    }));
   }, [messages]);
-
+  
   useEffect(() => {
     if (mascotTalking) {
       const interval = setInterval(() => {
@@ -57,7 +57,8 @@ const ChatBot: React.FC<{ onFinish: () => void }> = ({ onFinish }) => {
     if (input.trim() === "") return;
     if (!hasTyped) setHasTyped(true);
 
-    const userMessage = { text: input, sender: "user" };
+    const userMessage = { text: input, sender: "user" as "user" | "bot" }; // 🔹 Garantindo que sender seja um dos tipos permitidos
+
     setMessages((prev) => [...prev, userMessage]);
     setInput("");
 
@@ -109,9 +110,10 @@ const ChatBot: React.FC<{ onFinish: () => void }> = ({ onFinish }) => {
         {hasTyped ? "Quem é a polimat" : ""}
       </ChatHeader>
 
-      <MascotContainer>
+      <MascotContainer firstAppearance={false}>
         <img src={getMascotImage()} alt="Mascote" width="100" height="100" />
       </MascotContainer>
+
 
       <MessagesContainer>
         {messages.map((msg, index) => (

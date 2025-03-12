@@ -19,14 +19,14 @@ export const slideInMain = keyframes`
   }
 `;
 
-const slideOutSidebar = keyframes`
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-100%);
-  }
-`;
+// const slideOutSidebar = keyframes`
+//   from {
+//     transform: translateX(0);
+//   }
+//   to {
+//     transform: translateX(-100%);
+//   }
+// `;
 
 
 const fadeIn = keyframes`
@@ -40,14 +40,14 @@ const fadeIn = keyframes`
   }
 `;
 
-const slideInSidebar = keyframes`
-  from {
-    transform: translateX(-100%);
-  }
-  to {
-    transform: translateX(0);
-  }
-`;
+// const slideInSidebar = keyframes`
+//   from {
+//     transform: translateX(-100%);
+//   }
+//   to {
+//     transform: translateX(0);
+//   }
+// `;
 
 // Estilos
  export const CourseContainer = styled.div`
