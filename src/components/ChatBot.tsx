@@ -98,9 +98,9 @@ const ChatBot: React.FC<{ onFinish: () => void }> = ({ onFinish }) => {
     }, 1000);
   };
 
-  const handleCloseChat = () => {
-    onFinish(); // 🔹 Fecha o chat chamando setShowChat(false) do MainScreen
-  };
+  // const handleCloseChat = () => {
+  //   onFinish(); // 🔹 Fecha o chat chamando setShowChat(false) do MainScreen
+  // };
   
 
   const getMascotImage = () => {
