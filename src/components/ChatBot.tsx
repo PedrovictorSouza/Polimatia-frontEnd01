@@ -12,7 +12,8 @@ import {
   SendButton
 } from "./styles/ChatBot.styles";
 
-const ChatBot: React.FC = () => {
+const ChatBot: React.FC<{ onFinish: () => void }> = ({ onFinish }) => {
+
   const [messages, setMessages] = useState<{ text: string; sender: "user" | "bot" }[]>([
     { text: "Olá! me chamo galileu, como posso te ajudar?", sender: "bot" } // 🔹 O mascote já começa falando
   ]);
@@ -97,6 +98,11 @@ const ChatBot: React.FC = () => {
     }, 1000);
   };
 
+  const handleCloseChat = () => {
+    onFinish(); // 🔹 Fecha o chat chamando setShowChat(false) do MainScreen
+  };
+  
+
   const getMascotImage = () => {
     if (mascotFrame === 1) return "/assets/mascot-t1.svg";
     if (mascotFrame === 2) return "/assets/mascot-t2.svg";
@@ -147,6 +153,9 @@ const ChatBot: React.FC = () => {
           onKeyPress={(e) => e.key === "Enter" && handleSendMessage()}
         />
         <SendButton onClick={handleSendMessage}>Enviar</SendButton>
+        {/* <button onClick={handleCloseChat}>Fechar Chat</button> */}
+
+
       </InputContainer>
     </ChatContainer>
   );

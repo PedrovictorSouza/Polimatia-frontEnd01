@@ -22,6 +22,8 @@ import {
   CloseButton // 🔹 Botão de fechar menu
 } from "./styles/MainScreen.styles";
 
+
+
 const CourseScreen: React.FC = () => {
   const { modules, activeModule, handleModuleChange } = useCourseModules();
   const [showChat, setShowChat] = useState(true);
