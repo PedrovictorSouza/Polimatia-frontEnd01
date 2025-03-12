@@ -12,7 +12,8 @@ import {
   SendButton
 } from "./styles/ChatBot.styles";
 
-const ChatBot: React.FC<{ onFinish: () => void }> = ({ onFinish }) => {
+const ChatBot: React.FC = () => {
+
 
   const [messages, setMessages] = useState<{ text: string; sender: "user" | "bot" }[]>([
     { text: "Olá! me chamo galileu, como posso te ajudar?", sender: "bot" } // 🔹 O mascote já começa falando
