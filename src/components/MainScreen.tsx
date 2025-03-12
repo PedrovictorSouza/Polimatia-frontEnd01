@@ -23,10 +23,9 @@ import {
 } from "./styles/MainScreen.styles";
 
 
-
 const CourseScreen: React.FC = () => {
   const { modules, activeModule, handleModuleChange } = useCourseModules();
-  const [showChat, setShowChat] = useState(true);
+  const [showChat] = useState(true);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   return (
@@ -59,7 +58,7 @@ const CourseScreen: React.FC = () => {
       {/* 🔹 Alterna entre ChatBot e módulos do curso */}
       <ContentWrapper $isSidebarOpen={isSidebarOpen}>
         {showChat ? (
-          <ChatBot onFinish={() => setShowChat(false)} />
+          <ChatBot/>
         ) : (
           <>
             <TopSection>
